@@ -23,3 +23,8 @@ node {
         sh 'tree /var/lib/jenkins/workspace/pipeline_Job'
     }
 }
+node {
+    stage('Print status') {
+        echo "Pipeline status: ${currentBuild.currentResult}"
+    }
+}
