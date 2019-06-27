@@ -3,35 +3,23 @@ node {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sruthi68/pipeline_proj.git']]])
     }
     stage('Create directory') {
-        steps {
-            sh "mkdir test_dir"
-        }
+        sh "mkdir test_dir"
     }
     stage('Checkout') {
-        steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'test_dir']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sruthi68/test.git']]])
-        }
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'test_dir']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sruthi68/test.git']]])
     }
     stage('Checkout code') {
-        steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sruthi68/test.git']]])
-        }
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sruthi68/test.git']]])
     }
     stage('Execute script') {
-        steps {
-            sh "chmod 755 hello.sh"
-            sh "./hello.sh"
-        }
+        sh "chmod 755 hello.sh"
+        sh "./hello.sh"
     }
     stage('Archive files') {   
-        steps {
-            archiveArtifacts '*.txt'
-        }
+        archiveArtifacts '*.txt'
     }
     stage('Tree form') {
-        steps {
-            sh 'tree test_dir'
-            sh 'tree /var/lib/jenkins/workspace/pipeline_Job'
-        }
+        sh 'tree test_dir'
+        sh 'tree /var/lib/jenkins/workspace/pipeline_Job'
     }
 }
