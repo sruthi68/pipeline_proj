@@ -1,5 +1,3 @@
-pipeline {
-    agent any
     options {
         buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
     }
@@ -42,4 +40,4 @@ pipeline {
             echo "Pipeline currentResult: ${currentBuild.currentResult}"
         }
     }
-}
+
